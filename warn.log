@@ -1,0 +1,21 @@
+{"level":"warn","message":"Error in SignUp: ReferenceError: fetch is not defined","timestamp":"2023-04-09T06:15:10.852Z"}
+{"level":"warn","message":"Error in SignUp: ReferenceError: axios is not defined","timestamp":"2023-04-09T06:20:22.741Z"}
+{"level":"warn","message":"New user mail not sent: AxiosError: Request failed with status code 404","timestamp":"2023-04-09T06:22:24.073Z"}
+{"level":"warn","message":"New user mail not sent: AxiosError: Request failed with status code 500","timestamp":"2023-04-09T14:01:45.072Z"}
+{"level":"warn","message":"New user mail not sent: Error: connect ECONNREFUSED 127.0.0.1:3000","timestamp":"2023-04-09T18:53:59.944Z"}
+{"level":"warn","message":"New user mail not sent: Error: connect ECONNREFUSED 127.0.0.1:3000","timestamp":"2023-04-09T19:02:32.704Z"}
+{"level":"warn","message":"There was a problem getting the products: ReferenceError: products is not defined","timestamp":"2023-04-09T19:03:57.593Z"}
+{"level":"error","message":"Error connecting to MongoDB: Error: querySrv ECONNREFUSED _mongodb._tcp.learningcluster.henetdi.mongodb.net","timestamp":"2023-04-09T21:23:02.510Z"}
+{"level":"error","message":"Error connecting to MongoDB: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/","timestamp":"2023-04-09T21:26:16.250Z"}
+{"level":"error","message":"Error connecting to MongoDB: Error: querySrv ECONNREFUSED _mongodb._tcp.learningcluster.henetdi.mongodb.net","timestamp":"2023-04-09T21:27:03.733Z"}
+{"level":"error","message":"Error connecting to MongoDB: Error: querySrv ETIMEOUT _mongodb._tcp.learningcluster.henetdi.mongodb.net","timestamp":"2023-04-09T21:31:48.399Z"}
+{"level":"warn","message":"Error retrieving cart info: CastError: Cast to ObjectId failed for value \":id\" (type string) at path \"_id\" for model \"carritos\"","timestamp":"2023-04-10T12:01:27.467Z"}
+{"level":"warn","message":"Products not added to cart: CastError: Cast to ObjectId failed for value \"643406758de5a79e8ed3df1\" (type string) at path \"_id\" for model \"carritos\"","timestamp":"2023-04-10T12:53:03.901Z"}
+{"level":"warn","message":"There was a problem getting the products: AxiosError: Request failed with status code 404","timestamp":"2023-04-10T13:04:33.374Z"}
+{"level":"warn","message":"Error retrieving cart info: CastError: Cast to ObjectId failed for value \"federicoambroggio@gmail.com\" (type string) at path \"_id\" for model \"carritos\"","timestamp":"2023-04-10T13:08:01.257Z"}
+{"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-10T21:06:45.223Z"}
+{"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-10T21:07:49.705Z"}
+{"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-10T21:10:29.142Z"}
+{"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-10T21:11:25.671Z"}
+{"level":"warn","message":"Error adding products to cart: MongoServerError: The argument to $each in $push must be an array but it was of type: null","timestamp":"2023-04-10T21:32:47.667Z"}
+{"level":"warn","message":"Error adding products to cart: MongoServerError: The argument to $each in $push must be an array but it was of type: null","timestamp":"2023-04-10T21:34:43.540Z"}

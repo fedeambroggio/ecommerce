@@ -1,0 +1,4 @@
+{"level":"error","message":"Error connecting to MongoDB: Error: querySrv ECONNREFUSED _mongodb._tcp.learningcluster.henetdi.mongodb.net","timestamp":"2023-04-09T21:23:02.510Z"}
+{"level":"error","message":"Error connecting to MongoDB: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/","timestamp":"2023-04-09T21:26:16.250Z"}
+{"level":"error","message":"Error connecting to MongoDB: Error: querySrv ECONNREFUSED _mongodb._tcp.learningcluster.henetdi.mongodb.net","timestamp":"2023-04-09T21:27:03.733Z"}
+{"level":"error","message":"Error connecting to MongoDB: Error: querySrv ETIMEOUT _mongodb._tcp.learningcluster.henetdi.mongodb.net","timestamp":"2023-04-09T21:31:48.399Z"}
