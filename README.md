@@ -1,5 +1,5 @@
 Env variables required:
-
+```
 DB_NAME_AUTH
 DB_USER
 DB_PASS8
@@ -13,3 +13,4 @@ SMTP_PASSWORD
 BASE_URL=http://localhost:PORT
 TWILIO_SID
 TWILIO_TOKEN
+```
