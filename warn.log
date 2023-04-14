@@ -19,3 +19,21 @@
 {"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-10T21:11:25.671Z"}
 {"level":"warn","message":"Error adding products to cart: MongoServerError: The argument to $each in $push must be an array but it was of type: null","timestamp":"2023-04-10T21:32:47.667Z"}
 {"level":"warn","message":"Error adding products to cart: MongoServerError: The argument to $each in $push must be an array but it was of type: null","timestamp":"2023-04-10T21:34:43.540Z"}
+{"level":"warn","message":"There was a problem adding products to cart ID (643406758de5a79ef8ed3df1): AxiosError: Request failed with status code 404","timestamp":"2023-04-14T21:57:10.763Z"}
+{"level":"warn","message":"Error adding products to cart: MongoServerError: The argument to $each in $push must be an array but it was of type: null","timestamp":"2023-04-14T21:59:08.585Z"}
+{"level":"warn","message":"Error adding products to cart: MongoServerError: The argument to $each in $push must be an array but it was of type: null","timestamp":"2023-04-14T22:01:54.454Z"}
+{"level":"warn","message":"There was a problem adding products to cart ID (643406758de5a79ef8ed3df1): AxiosError: Request failed with status code 400","timestamp":"2023-04-14T22:01:54.459Z"}
+{"level":"warn","message":"Error adding products to cart: MongoServerError: The argument to $each in $push must be an array but it was of type: null","timestamp":"2023-04-14T22:04:20.841Z"}
+{"level":"warn","message":"There was a problem adding products to cart ID (643406758de5a79ef8ed3df1): AxiosError: Request failed with status code 400","timestamp":"2023-04-14T22:04:20.847Z"}
+{"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-14T22:14:51.925Z"}
+{"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-14T22:14:55.240Z"}
+{"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-14T22:14:58.074Z"}
+{"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-14T22:21:42.533Z"}
+{"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-14T22:24:07.734Z"}
+{"level":"warn","message":"There was a problem getting cart ID: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-14T22:25:18.078Z"}
+{"level":"warn","message":"There was a problem getting cart ID: ReferenceError: response is not defined","timestamp":"2023-04-14T22:27:47.176Z"}
+{"level":"warn","message":"There was a problem getting cart ID: ReferenceError: response is not defined","timestamp":"2023-04-14T22:30:01.400Z"}
+{"level":"warn","message":"There was a problem getting cart ID: ReferenceError: response is not defined","timestamp":"2023-04-14T22:31:29.894Z"}
+{"level":"warn","message":"There was a problem getting cart ID: ReferenceError: response is not defined","timestamp":"2023-04-14T22:32:50.672Z"}
+{"level":"warn","message":"There was a problem creating the cart: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-14T22:34:31.752Z"}
+{"level":"warn","message":"There was a problem creating the cart: TypeError: res.render is not a function","timestamp":"2023-04-14T22:36:51.826Z"}

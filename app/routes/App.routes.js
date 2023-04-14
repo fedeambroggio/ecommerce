@@ -23,7 +23,25 @@ module.exports = () => {
             .then(responseProducts => {
                 axios.get(`${BASE_URL}/api/carts/?email=${req.user.email}`)
                     .then(responseCart => {
-                        res.render('products/products', { products: responseProducts.data.data, cartId: responseCart.data.data[0]['_id'] });
+
+                        if (responseCart.data.data.length > 0) { //Si existe un carrito, renderizar
+                            res.render('products/products', { products: responseProducts.data.data, cartId: responseCart.data.data[0]['_id'] });
+                        } else { //Si no existe un carrito, agregar. Luego renderizar
+                            const data = {
+                                "email": req.user.email,
+                                "products": []
+                            }
+                            axios.post(`${BASE_URL}/api/carts`, data)
+                                .then((response) => {
+                                    const newCartId = response.data.data['_id']
+                                    logger.log({ level: "info", message: `Cart successfully created. ID: ${newCartId}` })
+                                    res.render('products/products', { products: responseProducts.data.data, cartId: newCartId });
+                                })
+                                .catch(err => {
+                                    logger.log({ level: "warn", message: `There was a problem creating the cart: ${err}` })
+                                });
+                        }
+
                     })
                     .catch(err => {
                         logger.log({level: "warn", message: `There was a problem getting cart ID: ${err}`})
@@ -33,11 +51,30 @@ module.exports = () => {
                 logger.log({level: "warn", message: `There was a problem getting the products: ${err}`})
             });
     });
+
     /* GET Cart Page */
     router.get('/cart', isAuthenticated, function (req, res) {
         axios.get(`${BASE_URL}/api/carts/?email=${req.user.email}`)
-            .then(response => {
-                res.render('cart/cart', {cartId: response.data.data[0]._id});
+            .then(responseCart => {
+
+                if (responseCart.data.data.length > 0) { //Si existe un carrito, renderizar
+                    res.render('cart/cart', { cartId: responseCart.data.data[0]['_id'] });
+                } else { //Si no existe un carrito, agregar. Luego renderizar
+                    const data = {
+                        "email": req.user.email,
+                        "products": []
+                    }
+                    axios.post(`${BASE_URL}/api/carts`, data)
+                        .then((response) => {
+                            const newCartId = response.data.data['_id']
+                            logger.log({ level: "info", message: `Cart successfully created. ID: ${newCartId}` })
+                            res.render('cart/cart', { cartId: newCartId });
+                        })
+                        .catch(err => {
+                            logger.log({ level: "warn", message: `There was a problem creating the cart: ${err}` })
+                        });
+                }
+
             })
             .catch(err => {
                 logger.log({level: "warn", message: `There was a problem getting cart ID: ${err}`})
