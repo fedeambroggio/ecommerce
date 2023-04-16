@@ -2,162 +2,74 @@
     <h1 class="mb-10 text-center text-2xl font-bold">Carrito</h1>
     <p class="text-xs text-gray-700 text-center">Id del carrito: {{cartId}}</p>
 
-    <div
-        class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0"
-    >
-        {{! Product list on cart }}
-        <div class="rounded-lg md:w-2/3">
-            <div
-                class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
-            >
-                <img
-                    src="https://cdn.shopify.com/s/files/1/0567/2907/5873/products/river2022.png?v=1660826121"
-                    alt="product-image"
-                    class="w-full rounded-lg sm:w-40"
-                />
-                <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                    <div class="mt-5 sm:mt-0">
-                        <h2 class="text-lg font-bold text-gray-900">Camiseta de River Plate</h2>
-                        <p class="mt-1 text-xs text-gray-700">$ 18.000</p>
-                    </div>
-                    <div
-                        class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"
-                    >
-                        <div class="flex items-center border-gray-100">
-                            {{!-- <span
-                                class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                            > - </span> --}}
-                            <input
-                                class="h-8 w-8 border bg-white text-center text-xs outline-none"
-                                type="number"
-                                value="1"
-                                min="1"
-                            />
-                            {{!-- <span
-                                class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                            > + </span> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
-            >
-                <img
-                    src="https://cdn.shopify.com/s/files/1/0567/2907/5873/products/estudiantes.png?v=1645481164"
-                    alt="product-image"
-                    class="w-full rounded-lg sm:w-40"
-                />
-                <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                    <div class="mt-5 sm:mt-0">
-                        <h2 class="text-lg font-bold text-gray-900">Camiseta de Estudiantes</h2>
-                        <p class="mt-1 text-xs text-gray-700">$ 18.000</p>
-                    </div>
-                    <div
-                        class="mt-4 flex justify-between im sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"
-                    >
-                        <div class="flex items-center border-gray-100">
-                            {{!-- <span
-                                class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                            > - </span> --}}
-                            <input
-                                class="h-8 w-8 border bg-white text-center text-xs outline-none"
-                                type="number"
-                                value="2"
-                                min="1"
-                            />
-                            {{!-- <span
-                                class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                            > + </span> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sub total -->
+    <form action="/api/carts/checkout" method="POST">
         <div
-            class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
+            class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0"
         >
-            {{!-- <div class="flex justify-between">
+            {{! Product list on cart }}
+            <div class="rounded-lg md:w-2/3">
+
+                {{#each productsInfo}}
+                    <div
+                        class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
+                    >
+                        <img
+                            src={{this.foto}}
+                            alt="product-image"
+                            class="w-full rounded-lg sm:w-40"
+                        />
+                        <div
+                            class="sm:ml-4 sm:flex sm:w-full sm:justify-between"
+                        >
+                            <div class="mt-5 sm:mt-0">
+                                <h2
+                                    class="text-lg font-bold text-gray-900"
+                                >{{this.nombre}}</h2>
+                                <p class="mt-1 text-xs text-gray-700">$
+                                    {{this.precio}}</p>
+                            </div>
+                            <div
+                                class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"
+                            >
+                                <div class="flex items-center border-gray-100">
+                                    {{! <span
+                                class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                            > - </span> }}
+                                    <input
+                                        class="h-8 w-8 border bg-white text-center text-xs outline-none"
+                                        type="number"
+                                        name={{this.codigo}}
+                                        value="1"
+                                        min="1"
+                                    />
+                                    {{! <span
+                                class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                            > + </span> }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+
+            <!-- Sub total -->
+            <div
+                class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
+            >
+                {{! <div class="flex justify-between">
                 <p class="text-lg font-bold">Total</p>
                 <div class="">
                     <p class="mb-1 text-lg font-bold">$134.98 USD</p>
                 </div>
-            </div> --}}
-            <button
-                id="btn_buy"
-                class="mt-6 w-full rounded-md bg-blue-500 py-0.5 font-medium text-blue-50 hover:bg-blue-600"
-            >Finalizar compra</button>
+            </div> }}
+
+                <input
+                    type="submit"
+                    value="Finalizar Compra"
+                    class="mt-6 w-full rounded-md bg-blue-500 py-0.5 font-medium text-blue-50 hover:bg-blue-600"
+                />
+
+            </div>
         </div>
-    </div>
+    </form>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const buyButton = document.getElementById('btn_buy');
-
-        buyButton.addEventListener('click', e => {
-            const bodyAdmin = {
-                body: `Nuevo pedido de Federico`,
-            };
-            //Send wapp to admin
-            fetch('/api/send-wapp/new-order-admin', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(bodyAdmin)
-            })
-            .then(response => {
-                console.log('Whatsapp sent to admin');
-            })
-            .catch(error => {
-                console.error('Error sending whatsapp to admin:', error);
-            });
-
-            //Send wapp tu user
-            const bodyUser = {
-                body: `¡Hola Federico! Su pedido ha sido confirmado.`,
-                userPhone: '5493517675132' 
-            };
-
-            fetch('/api/send-wapp/new-order-customer', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(bodyUser)
-            })
-            .then(response => {
-                console.log('Whatsapp sent to customer');
-            })
-            .catch(error => {
-                console.error('Error sending whatsapp to customer:', error);
-            });
-
-            //Send email to admin
-            const body = {
-                from: "My ecommerce",
-                to: "federicoambroggio@gmail.com",
-                subject: "Nuevo pedido",
-                html: `
-                <p>Los datos del pedido se presentan a continuación:</p>
-                <ul>
-                    <li>Camiseta de River -- 1 -- $ 18.000</li>
-                    <li>Camiseta de Estudiantes -- 1 -- $ 18.000</li>
-                </ul>
-                `,
-            }
-
-            fetch('/api/send-email/new-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            })
-            .then(response => {console.log('Email sent');})
-            .catch(error => {console.error('Error sending email:', error)});
-        })
-    });
-</script>

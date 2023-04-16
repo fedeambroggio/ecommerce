@@ -37,3 +37,7 @@
 {"level":"warn","message":"There was a problem getting cart ID: ReferenceError: response is not defined","timestamp":"2023-04-14T22:32:50.672Z"}
 {"level":"warn","message":"There was a problem creating the cart: TypeError: Cannot read property '_id' of undefined","timestamp":"2023-04-14T22:34:31.752Z"}
 {"level":"warn","message":"There was a problem creating the cart: TypeError: res.render is not a function","timestamp":"2023-04-14T22:36:51.826Z"}
+{"level":"warn","message":"There was a problem getting product info: AxiosError: Request failed with status code 500","timestamp":"2023-04-16T13:56:18.302Z"}
+{"level":"warn","message":"There was a problem getting product info: AxiosError: Request failed with status code 500","timestamp":"2023-04-16T13:56:52.633Z"}
+{"level":"warn","message":"There was a problem getting product info: ReferenceError: productsInfo is not defined","timestamp":"2023-04-16T13:58:17.779Z"}
+{"level":"warn","message":"Error while sending email: Error: No recipients defined","timestamp":"2023-04-16T14:28:42.241Z"}

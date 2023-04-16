@@ -1,3 +1,8 @@
+// TODO
+// -Carga de imagen al servidor (Que no sea por URL)
+// -Filtros de productos
+// -Que los productos agregados puedan ser mainpulados en el carrito
+// -Modo cluster del servidor
 const express = require('express');
 const handlebars = require('express-handlebars')
 const compression = require('compression')

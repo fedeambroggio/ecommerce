@@ -9,6 +9,7 @@ require('dotenv').config()
 const { sendWappToAdmin, sendWappToCustomer } = require('../middleware/wappSender.js');
 
 const BASE_URL = process.env.BASE_URL;
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
 const productService = new CRUDService(Product);
 const cartService = new CRUDService(Cart);
@@ -54,6 +55,21 @@ module.exports = () => {
             .catch((err) => {
                 logger.log({ level: "warn", message: `Error retrieving products: ${err}` })
                 res.send({message: `Error retrieving products: ${err}`})
+            });
+    });
+    /* Get multiple product info by codigo*/
+    router.get('/products/infoByCode', function (req, res) {
+        const { codigos } = req.query;
+        const codigosArray = codigos.split(',');
+      
+        productService.find({ codigo: { $in: codigosArray } })
+            .then((products) => {
+                logger.log({ level: "info", message: `Product info successfully` })
+                res.send({ message: "Product info received successfully", data: products })
+            })
+            .catch((err) => {
+                logger.log({ level: "warn", message: `Error retrieving product info: ${err}` })
+                res.send({ message: `Error retrieving product info: ${err}` })
             });
     });
     /* Add product */
@@ -129,6 +145,61 @@ module.exports = () => {
             });
        
     });
+    /* Hanlde finalizar compra from handlebars */
+    router.post('/carts/checkout', function (req, res) {
+        const bodyAdmin = {
+            body: `Nuevo pedido de ${req.user.name}`,
+        };
+        //Send wapp to admin
+        axios.post(`${BASE_URL}/api/send-wapp/new-order-admin`, bodyAdmin)
+            .then(() => {
+                logger.log({ level: "info", message: `Whats App sent to admin` })
+            })
+            .catch(err => {
+                logger.log({level: "warn", message: `There was a problem sending WhatsApp to admin: ${err}`})
+            });
+
+        //Send wapp tu user
+        const bodyUser = {
+            body: `¡Hola ${req.user.name}! Su pedido ha sido confirmado.`,
+            userPhone: `${req.user.phoneNumber}` 
+        };
+        axios.post(`${BASE_URL}/api/send-wapp/new-order-customer`, bodyUser)
+            .then(() => {
+                logger.log({ level: "info", message: `WhatsApp sent to user` })
+            })
+            .catch(err => {
+                logger.log({level: "warn", message: `There was a problem sending WhatsApp to user: ${err}`})
+            });
+
+        //Send email to admin
+
+        const products = Object.keys(req.body);
+        console.log("products", products)
+        let productsHtml=""
+        products.forEach(product => {
+            productsHtml += `<li>${product}: ${req.body.product}</li>`
+        })
+        const emailBody = {
+            from: "My ecommerce",
+            to: ADMIN_EMAIL,
+            subject: "Nuevo pedido",
+            html: `
+            <p>Los datos del pedido se presentan a continuación:</p>
+            <ul>
+                ${productsHtml}
+            </ul>
+            `,
+        }
+
+        axios.post(`${BASE_URL}/api/send-email/new-order`, emailBody)
+            .then(() => {
+                logger.log({ level: "info", message: `Email sent to admin` })
+            })
+            .catch(err => {
+                logger.log({level: "warn", message: `There was a problem sending email to admin: ${err}`})
+            });
+    });
     /* Get cart info by id*/
     router.get('/carts/:id', function (req, res) {
         const { id } = req.params;
@@ -153,10 +224,6 @@ module.exports = () => {
             // $pull: { products: { $in: ['product1'] } } //Propiedades a eliminar
         };
           
-        
-        console.log("id",id)
-        console.log("products",products)
-        console.log("productsUpdateData",productsUpdateData)
         cartService.update(id, productsUpdateData)
             .then((cartInfo) => {
                 logger.log({ level: "info", message: `Products added to cart successfully` })

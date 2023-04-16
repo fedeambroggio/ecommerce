@@ -58,7 +58,26 @@ module.exports = () => {
             .then(responseCart => {
 
                 if (responseCart.data.data.length > 0) { //Si existe un carrito, renderizar
-                    res.render('cart/cart', { cartId: responseCart.data.data[0]['_id'] });
+                    const cartData = responseCart.data.data[0];
+                    
+                    if (cartData["products"].length > 0) {
+                        let productsKeys = []
+                         cartData["products"].forEach(product => {
+                            //Access to key of product
+                             for (let key in product) {
+                                productsKeys.push(key)
+                            }                            
+                         });
+                        
+                        axios.get(`${BASE_URL}/api/products/infoByCode?codigos=${productsKeys.join(",")}`)
+                            .then(productInfoResponse => {
+                                res.render('cart/cart', { cartId: cartData['_id'], productsInfo: productInfoResponse.data.data });
+                            })
+                            .catch(err => {
+                                logger.log({level: "warn", message: `There was a problem getting product info: ${err}`})
+                            }); 
+                    }
+
                 } else { //Si no existe un carrito, agregar. Luego renderizar
                     const data = {
                         "email": req.user.email,
