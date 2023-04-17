@@ -1,6 +1,5 @@
 // TODO
 // -Carga de imagen al servidor (Que no sea por URL)
-// -Filtros de productos
 // -Que los productos agregados puedan ser mainpulados en el carrito
 // -Modo cluster del servidor
 const express = require('express');
@@ -22,8 +21,15 @@ const app = express();
 const port = 8080;
 app.use(compression())
 app.use(express.static('public')) //Serves static files (Used to import css files)
+app.use('/api/products', express.static('public', { 
+    type: 'text/css' 
+}));
 app.engine('handlebars', handlebars.engine({
     defaultLayout: 'index-primary',
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,
+    },
     //new configuration parameter
     partialsDir: __dirname + '/app/views/partials/'
 }));

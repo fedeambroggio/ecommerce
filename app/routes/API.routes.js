@@ -57,6 +57,28 @@ module.exports = () => {
                 res.send({message: `Error retrieving products: ${err}`})
             });
     });
+    /* Apply filters from handlebars */
+    router.post('/products/filtered', function (req, res) {
+        const {priceFilter} = req.body;
+
+        //Resolver lo de los filtros
+        const filters = {
+            "0": { },
+            "1": { precio: { "$lte": 12000 } },
+            "2": { precio: { "$lte": 15000 } },
+            "3": { precio: { "$lte": 18000 } }
+        };
+
+        productService.find(filters[priceFilter])
+            .then((responseProducts) => {
+                logger.log({ level: "info", message: `Filtered products received successfully` })
+                res.render('products/products', { products: responseProducts});
+            })
+            .catch((err) => {
+                logger.log({ level: "warn", message: `Error retrieving filtered products: ${err}` })
+                res.send({message: `Error retrieving filtered products: ${err}`})
+            });
+    });
     /* Get multiple product info by codigo*/
     router.get('/products/infoByCode', function (req, res) {
         const { codigos } = req.query;
@@ -175,7 +197,6 @@ module.exports = () => {
         //Send email to admin
 
         const products = Object.keys(req.body);
-        console.log("products", products)
         let productsHtml=""
         products.forEach(product => {
             productsHtml += `<li>${product}: ${req.body.product}</li>`

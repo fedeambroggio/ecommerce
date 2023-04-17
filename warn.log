@@ -41,3 +41,5 @@
 {"level":"warn","message":"There was a problem getting product info: AxiosError: Request failed with status code 500","timestamp":"2023-04-16T13:56:52.633Z"}
 {"level":"warn","message":"There was a problem getting product info: ReferenceError: productsInfo is not defined","timestamp":"2023-04-16T13:58:17.779Z"}
 {"level":"warn","message":"Error while sending email: Error: No recipients defined","timestamp":"2023-04-16T14:28:42.241Z"}
+{"level":"warn","message":"Error retrieving filtered products: TypeError: Cannot read property 'data' of undefined","timestamp":"2023-04-17T04:19:51.074Z"}
+{"level":"warn","message":"Error retrieving filtered products: TypeError: Cannot read property 'data' of undefined","timestamp":"2023-04-17T04:23:16.383Z"}
